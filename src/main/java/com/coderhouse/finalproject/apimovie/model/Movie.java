@@ -2,6 +2,8 @@ package com.coderhouse.finalproject.apimovie.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,7 +29,10 @@ public class Movie {
     private String  plot;
     
     private String  poster;
+    
+    @Enumerated(EnumType.STRING)
     private Classified  classified;
+    
     private Integer rate;
     private Double  duration;
     
