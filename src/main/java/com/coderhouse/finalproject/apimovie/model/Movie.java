@@ -34,7 +34,7 @@ public class Movie {
     private Classified  classified;
     
     private Integer rate;
-    private Double  duration;
+    private Double  duration; 	//En minutos
     
 	public Movie() {
 	}
