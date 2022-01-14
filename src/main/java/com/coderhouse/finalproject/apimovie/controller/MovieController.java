@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.coderhouse.finalproject.apimovie.dto.MovieDto;
 import com.coderhouse.finalproject.apimovie.model.Classified;
 import com.coderhouse.finalproject.apimovie.model.Movie;
 import com.coderhouse.finalproject.apimovie.service.MovieService;
@@ -31,27 +33,30 @@ public class MovieController {
 	}
 	
 	@GetMapping("/movies")
-	public List<Movie> getMovies() {
+	public List<MovieDto> getMovies() {
 		return movieService.getMovies();
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/createMovie")
-	public Movie createMovie(@RequestBody Movie movie) {
-		return movieService.createMovie(movie);
+	public Movie createMovie(@RequestBody MovieDto movieDto) {
+		return movieService.createMovie(movieDto);
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/updateMovie/{id}")
-	public Optional<Movie> updateMovie(@RequestBody Movie movie, @PathVariable Integer id) {
-		return movieService.updateMovie(movie, id);
+	public Optional<MovieDto> updateMovie(@RequestBody MovieDto movieDto, @PathVariable Integer id) {
+		return movieService.updateMovie(movieDto, id);
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("/deleteMovie/{id}")
 	public boolean deleteMovie(@PathVariable Integer id) {
 		return movieService.deleteMovie(id);
 	}
 	
 	@GetMapping("findById/{id}")
-	public Optional<Movie> findById(@PathVariable Integer id) {
+	public Optional<MovieDto> findById(@PathVariable Integer id) {
 		return movieService.findById(id);
 	}
 	
