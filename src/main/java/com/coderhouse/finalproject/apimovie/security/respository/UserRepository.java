@@ -5,11 +5,11 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.coderhouse.finalproject.apimovie.security.entity.User;
+import com.coderhouse.finalproject.apimovie.security.entity.UserBD;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer>{
+public interface UserRepository extends JpaRepository<UserBD, Integer>{
 
-	Optional<User> findByEmail(String email);
+	Optional<UserBD> findByEmail(String email);
 	boolean existsByEmail(String email);
 }

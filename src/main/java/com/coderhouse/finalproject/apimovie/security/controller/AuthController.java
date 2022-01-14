@@ -25,7 +25,7 @@ import com.coderhouse.finalproject.apimovie.security.dto.JwtDto;
 import com.coderhouse.finalproject.apimovie.security.dto.LoginUser;
 import com.coderhouse.finalproject.apimovie.security.dto.NewUser;
 import com.coderhouse.finalproject.apimovie.security.entity.Rol;
-import com.coderhouse.finalproject.apimovie.security.entity.User;
+import com.coderhouse.finalproject.apimovie.security.entity.UserBD;
 import com.coderhouse.finalproject.apimovie.security.enums.RolName;
 import com.coderhouse.finalproject.apimovie.security.jwt.JwtProvider;
 import com.coderhouse.finalproject.apimovie.security.service.RolService;
@@ -59,7 +59,7 @@ public class AuthController {
 		if (userService.existsByEmail(newUser.getEmail())) 
 			return new ResponseEntity("El mail ya existes",HttpStatus.BAD_REQUEST);
 		
-		User user = new User(newUser.getUsername(), newUser.getEmail(), passwordEncoder.encode(newUser.getPassword()));
+		UserBD user = new UserBD(newUser.getUsername(), newUser.getEmail(), passwordEncoder.encode(newUser.getPassword()));
 		
 		Set<Rol> rols = new HashSet<>();
 		rols.add(rolService.getByRolName(RolName.ROLE_CLIENT).get());

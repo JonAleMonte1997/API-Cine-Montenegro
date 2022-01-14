@@ -17,8 +17,7 @@ import javax.persistence.Table;
 import com.sun.istack.NotNull;
 
 @Entity
-@Table(name = "users")
-public class User {
+public class UserBD {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,10 +38,10 @@ public class User {
     inverseJoinColumns = @JoinColumn(name = "rol_id"))
 	private Set<Rol> rols = new HashSet<>();
 
-	public User() {
+	public UserBD() {
 	}
 
-	public User(String username, String email, String password) {
+	public UserBD(String username, String email, String password) {
 		this.username = username;
 		this.email = email;
 		this.password = password;

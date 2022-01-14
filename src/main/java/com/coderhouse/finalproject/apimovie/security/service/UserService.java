@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.coderhouse.finalproject.apimovie.security.entity.User;
+import com.coderhouse.finalproject.apimovie.security.entity.UserBD;
 import com.coderhouse.finalproject.apimovie.security.respository.UserRepository;
 
 @Service
@@ -16,7 +16,7 @@ public class UserService {
 	@Autowired
 	UserRepository userRepository;
 	
-	public Optional<User> getByEmail(String email){
+	public Optional<UserBD> getByEmail(String email){
 		return userRepository.findByEmail(email);
 	}
 	
@@ -24,7 +24,7 @@ public class UserService {
 		return userRepository.existsByEmail(email);
 	}
 	
-	public void save(User user) {
+	public void save(UserBD user) {
 		userRepository.save(user);
 	}
 }

@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.coderhouse.finalproject.apimovie.security.entity.MainUser;
-import com.coderhouse.finalproject.apimovie.security.entity.User;
+import com.coderhouse.finalproject.apimovie.security.entity.UserBD;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{
@@ -17,7 +17,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		User user = userService.getByEmail(email).get();
+		UserBD user = userService.getByEmail(email).get();
 		
 		return MainUser.build(user);
 	}	

@@ -26,7 +26,7 @@ public class MainUser implements UserDetails{
 		this.authorities = authorities;
 	}
 	
-	public static MainUser build(User user) {
+	public static MainUser build(UserBD user) {
 		List<GrantedAuthority> authorities = user.getRols().stream().map(rol -> new SimpleGrantedAuthority(rol.getRolName().name())).collect(Collectors.toList());
 		
 		return new MainUser(user.getUsername(), user.getEmail(), user.getPassword(), authorities);
